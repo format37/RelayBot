@@ -1,3 +1,5 @@
+//C# program. can send messages via RelayBot from windows's cmd
+//see also RelayBot.cfg file
 using System.Linq;
 using System.Net;
 using System.IO;
