@@ -1,4 +1,5 @@
 <?php
+//Main script
 $json = file_get_contents('php://input');
 $action = json_decode($json, true);
 $message	= $action['message']['text'];
