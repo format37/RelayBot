@@ -63,6 +63,12 @@ def send_user(message):
 def send_user(message):
             bot.reply_to(message,   str(message.chat.id) )
 
+# Handle '/relayurl'
+@bot.message_handler(commands=['relayurl'])
+def send_user(message):
+            answer	= 'https://scriptlab.net:'+str(WEBHOOK_PORT)+'/relay?chat='+str(message.chat.id)+'&text=test ok'	
+            bot.reply_to(message, answer)
+		
 async def get_relay_text(request):
 	print('relay_text')
 	return web.Response(
@@ -70,7 +76,7 @@ async def get_relay_text(request):
 		content_type="text/html")
 
 app.router.add_post('/{token}/', handle)
-app.router.add_route('GET', '/relay_text', get_relay_text)
+app.router.add_route('GET', '/relay', get_relay_text)
 
 # Remove webhook, it fails sometimes the set if there is a previous webhook
 bot.remove_webhook()
