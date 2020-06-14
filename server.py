@@ -10,7 +10,7 @@ import asyncio
 
 API_TOKEN = '94106868:AAGNHwQpHiwnwVTaZo0AqzQB_IwGLhQMkyQ'
 
-WEBHOOK_HOST = 'scriptlab.net'
+WEBHOOK_HOST = 'www.scriptlab.net'
 WEBHOOK_PORT = 8443  # 443, 80, 88 or 8443 (port need to be 'open')
 WEBHOOK_LISTEN = '0.0.0.0'  # In some VPS you may need to put here the IP addr
 
@@ -66,7 +66,7 @@ def send_user(message):
 # Handle '/relayurl'
 @bot.message_handler(commands=['relayurl'])
 def send_user(message):
-            answer	= 'https://scriptlab.net:'+str(WEBHOOK_PORT)+'/relay?chat='+str(message.chat.id)+'&text=ok'
+            answer	= 'https://www.scriptlab.net:'+str(WEBHOOK_PORT)+'/relay?chat='+str(message.chat.id)+'&text=ok'
             bot.reply_to(message, answer)
 		
 async def get_relay_text(request):
