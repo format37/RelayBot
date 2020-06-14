@@ -6,6 +6,7 @@ import logging
 import ssl
 from aiohttp import web
 import telebot
+import asyncio
 
 API_TOKEN = '94106868:AAGNHwQpHiwnwVTaZo0AqzQB_IwGLhQMkyQ'
 
@@ -45,6 +46,7 @@ async def handle(request):
         return web.Response(status=403)
 
 app.router.add_post('/{token}/', handle)
+app.router.add_route('GET', '/relay_text', get_relay_text)
 
 # Handle '/start' and '/help'
 @bot.message_handler(commands=['help', 'start'])
@@ -64,6 +66,12 @@ def send_user(message):
 def send_user(message):
             bot.reply_to(message,   str(message.chat.id) )
 
+async def get_relay_text(request):
+	print('relay_text')
+	return web.Response(
+		text='ok',
+		content_type="text/html")
+		
 # Remove webhook, it fails sometimes the set if there is a previous webhook
 bot.remove_webhook()
 
