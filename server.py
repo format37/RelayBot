@@ -87,9 +87,9 @@ app.router.add_route('GET', '/relay', get_relay_text)
 bot.remove_webhook()
 
 # Set webhook
-bot.set_webhook(url=WEBHOOK_URL_BASE + WEBHOOK_URL_PATH,
+wh_res = bot.set_webhook(url=WEBHOOK_URL_BASE + WEBHOOK_URL_PATH,
                 certificate=open(WEBHOOK_SSL_CERT, 'r'))
-print('webhook set:')
+print('webhook set',wh_res)
 print(WEBHOOK_URL_BASE + WEBHOOK_URL_PATH)
 
 # Build ssl context
