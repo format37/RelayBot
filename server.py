@@ -56,22 +56,9 @@ def send_welcome(message):
 
 # Handle '/user'
 @bot.message_handler(commands=['user'])
-def send_user(message):    
-            user    = message.text[6:]            
-            bot.reply_to(message,   "user added\n"+user)
+def send_user(message):
+            bot.reply_to(message,   str(message.chat.id) )
 
-# Handle all other messages
-'''
-@bot.message_handler(func=lambda message: True, content_types=['text'])
-def echo_message(message):
-    if have_access(message.chat.id):
-        filename = convert_tts(message.text, 'en-EN', 'en-US-Wavenet-A', True)
-        file_to_send = open(filename, 'rb')
-        bot.send_voice(message.chat.id, file_to_send)
-        file_to_send.close()
-    else:
-        bot.reply_to(message, 'Command not supported')
-'''
 # Remove webhook, it fails sometimes the set if there is a previous webhook
 bot.remove_webhook()
 
