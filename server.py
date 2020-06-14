@@ -7,8 +7,6 @@ import ssl
 from aiohttp import web
 import telebot
 import asyncio
-import urllib
-import urllib.parse
 
 API_TOKEN = '94106868:AAGNHwQpHiwnwVTaZo0AqzQB_IwGLhQMkyQ'
 
@@ -76,16 +74,14 @@ def send_user(message):
 		
 async def get_relay_text(request):
 	chat     = str(request.rel_url.query['chat'])
-	#text	 = urllib.parse.quote_plus( str(request.rel_url.query['text']) )
-	#text	 = 'text'
 	text	 = str(request.rel_url.query['text'])
 	bot.send_message(chat, text)
 	return web.Response(
 		text='sent to '+chat,
 		content_type="text/html")
 
-#app.router.add_post('/{token}/', handle)
-app.router.add_route('POST', '/{token}/', handle)
+app.router.add_post('/{token}/', handle)
+#app.router.add_route('POST', '/{token}/', handle)
 app.router.add_route('GET', '/relay', get_relay_text)
 
 # Remove webhook, it fails sometimes the set if there is a previous webhook
@@ -101,9 +97,6 @@ print(WEBHOOK_URL_BASE + WEBHOOK_URL_PATH)
 context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
 context.load_cert_chain(WEBHOOK_SSL_CERT, WEBHOOK_SSL_PRIV)
 
-#wakeup log
-#bot.send_message('106129214', 'Bot online!')
-
 # Start aiohttp server
 web.run_app(
     app,
@@ -111,18 +104,3 @@ web.run_app(
     port=WEBHOOK_PORT,
     ssl_context=context,
 )
-
-'''
-loop = asyncio.get_event_loop()
-handler = app.make_handler()
-f = loop.create_server(handler, port=WEBHOOK_PORT, ssl=context)
-srv = loop.run_until_complete(f)
-print('serving on', srv.sockets[0].getsockname())
-try:
-    loop.run_forever()
-except KeyboardInterrupt:
-    print("serving off...")
-finally:
-    loop.run_until_complete(handler.finish_connections(1.0))
-    srv.close()
-'''
