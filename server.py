@@ -83,6 +83,9 @@ bot.set_webhook(url=WEBHOOK_URL_BASE + WEBHOOK_URL_PATH,
 context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
 context.load_cert_chain(WEBHOOK_SSL_CERT, WEBHOOK_SSL_PRIV)
 
+#wakeup log
+bot.send_message('106129214', 'Bot online!')
+
 # Start aiohttp server
 web.run_app(
     app,
