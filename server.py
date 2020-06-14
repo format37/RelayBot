@@ -10,7 +10,7 @@ import asyncio
 
 API_TOKEN = '94106868:AAGNHwQpHiwnwVTaZo0AqzQB_IwGLhQMkyQ'
 
-WEBHOOK_HOST = 'www.scriptlab.net'
+WEBHOOK_HOST = 'scriptlab.net'
 WEBHOOK_PORT = 8443  # 443, 80, 88 or 8443 (port need to be 'open')
 WEBHOOK_LISTEN = '0.0.0.0'  # In some VPS you may need to put here the IP addr
 
