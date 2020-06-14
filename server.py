@@ -87,12 +87,14 @@ context.load_cert_chain(WEBHOOK_SSL_CERT, WEBHOOK_SSL_PRIV)
 bot.send_message('106129214', 'Bot online!')
 
 # Start aiohttp server
-'''web.run_app(
+web.run_app(
     app,
     host=WEBHOOK_LISTEN,
     port=WEBHOOK_PORT,
     ssl_context=context,
-)'''
+)
+
+'''
 loop = asyncio.get_event_loop()
 handler = app.make_handler()
 f = loop.create_server(handler, port=WEBHOOK_PORT, ssl=context)
@@ -105,3 +107,4 @@ except KeyboardInterrupt:
 finally:
     loop.run_until_complete(handler.finish_connections(1.0))
     srv.close()
+'''
