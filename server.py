@@ -66,13 +66,15 @@ def send_user(message):
 # Handle '/relayurl'
 @bot.message_handler(commands=['relayurl'])
 def send_user(message):
-            answer	= 'https://scriptlab.net:'+str(WEBHOOK_PORT)+'/relay?chat='+str(message.chat.id)+'&text=test ok'	
+            answer	= 'https://scriptlab.net:'+str(WEBHOOK_PORT)+'/relay?chat='+str(message.chat.id)+'&text=ok'
             bot.reply_to(message, answer)
 		
 async def get_relay_text(request):
-	print('relay_text')
+	chat     = str(request.rel_url.query['chat'])
+	text	 = str(request.rel_url.query['text'])
+	bot.send_message(chat, text)
 	return web.Response(
-		text='ok',
+		text='sent to '+chat,
 		content_type="text/html")
 
 app.router.add_post('/{token}/', handle)
@@ -90,7 +92,7 @@ context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
 context.load_cert_chain(WEBHOOK_SSL_CERT, WEBHOOK_SSL_PRIV)
 
 #wakeup log
-bot.send_message('106129214', 'Bot online!')
+#bot.send_message('106129214', 'Bot online!')
 
 # Start aiohttp server
 web.run_app(
