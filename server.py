@@ -54,10 +54,10 @@ def send_welcome(message):
                   "/group\n"
                   "/user"))
 
-# Handle '/group'
-@bot.message_handler(commands=['group'])
+# Handle '/user'
+@bot.message_handler(commands=['user'])
 def send_user(message):
-            bot.reply_to(message,   str(message.user.id) )	
+            bot.reply_to(message,   str(message.entities.user.id) )	
 	
 # Handle '/group'
 @bot.message_handler(commands=['group'])
