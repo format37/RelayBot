@@ -39,7 +39,7 @@ app = web.Application()
 
 # Process webhook calls
 async def handle(request):
-    print('request',request)
+    #print('request',request)
     if request.match_info.get('token') == bot.token:
         request_body_dict = await request.json()
         update = telebot.types.Update.de_json(request_body_dict)
@@ -89,6 +89,8 @@ bot.remove_webhook()
 # Set webhook
 bot.set_webhook(url=WEBHOOK_URL_BASE + WEBHOOK_URL_PATH,
                 certificate=open(WEBHOOK_SSL_CERT, 'r'))
+print('webhook set:')
+print(WEBHOOK_URL_BASE + WEBHOOK_URL_PATH)
 
 # Build ssl context
 context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
