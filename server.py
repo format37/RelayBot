@@ -54,8 +54,13 @@ def send_welcome(message):
                   "/group\n"
                   "/user"))
 
-# Handle '/user'
-@bot.message_handler(commands=['user'])
+# Handle '/group'
+@bot.message_handler(commands=['group'])
+def send_user(message):
+            bot.reply_to(message,   str(message.user.id) )	
+	
+# Handle '/group'
+@bot.message_handler(commands=['group'])
 def send_user(message):
             bot.reply_to(message,   str(message.chat.id) )
 
