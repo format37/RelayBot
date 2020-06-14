@@ -7,6 +7,8 @@ import ssl
 from aiohttp import web
 import telebot
 import asyncio
+import urllib
+import urllib.parse
 
 API_TOKEN = '94106868:AAGNHwQpHiwnwVTaZo0AqzQB_IwGLhQMkyQ'
 
@@ -74,7 +76,7 @@ def send_user(message):
 		
 async def get_relay_text(request):
 	chat     = str(request.rel_url.query['chat'])
-	text	 = str(request.rel_url.query['text'])
+	text	 = urllib.parse.quote_plus( str(request.rel_url.query['text']) )
 	bot.send_message(chat, text)
 	return web.Response(
 		text='sent to '+chat,
