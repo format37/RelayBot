@@ -8,7 +8,7 @@ from aiohttp import web
 import telebot
 import asyncio
 
-with open('token.key','r') as file:
+with open('/home/format37_gmail_com/projects/RelayBot/token.key','r') as file:
 	API_TOKEN=file.read().replace('\n', '')
 	file.close()
 
