@@ -8,7 +8,9 @@ from aiohttp import web
 import telebot
 import asyncio
 
-API_TOKEN = '94106868:AAGNHwQpHiwnwVTaZo0AqzQB_IwGLhQMkyQ'
+with open('token.key','r') as file:
+	API_TOKEN=file.read().replace('\n', '')
+	file.close()
 
 WEBHOOK_HOST = 'www.scriptlab.net'
 WEBHOOK_PORT = 8443  # 443, 80, 88 or 8443 (port need to be 'open')
